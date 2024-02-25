@@ -1,3 +1,6 @@
+mod pieces;
+pub use pieces::{pieces_float, pieces_usize};
+
 pub fn urlencode_1(t: &[u8; 20]) -> String {
     let mut encoded = String::with_capacity(3 * t.len());
     for &byte in t {
@@ -32,4 +35,24 @@ pub fn urlencode_4(bytes: &[u8; 20]) -> anyhow::Result<String> {
         hex::encode_to_slice(&buf[..], &mut res[idx..idx + 2])?;
     }
     String::from_utf8(res).map_err(Into::into)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    static HASH_BYTES: [u8; 20] = [
+        214, 159, 145, 230, 178, 174, 76, 84, 36, 104, 209, 7, 58, 113, 212, 234, 19, 135, 154, 127,
+    ];
+
+    #[test]
+    fn test_url_encode_bytes() {
+        let res1 = urlencode_1(&HASH_BYTES);
+        let res2 = urlencode_2(&HASH_BYTES);
+        let res3 = urlencode_3(&HASH_BYTES);
+        let res4 = urlencode_4(&HASH_BYTES).unwrap();
+        assert_eq!(res4, res1);
+        assert_eq!(res4, res2);
+        assert_eq!(res4, res3);
+    }
 }

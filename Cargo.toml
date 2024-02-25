@@ -14,3 +14,7 @@ hex = "0.4.3"
 [[bench]]
 name = "urlencode"
 harness = false
+
+[[bench]]
+name = "pieces"
+harness = false
