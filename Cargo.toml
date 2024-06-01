@@ -18,3 +18,7 @@ harness = false
 [[bench]]
 name = "pieces"
 harness = false
+
+[[bench]]
+name = "parse_float"
+harness = false
