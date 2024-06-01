@@ -37,3 +37,10 @@ fn bench_std_parse(b: &[u8]) -> f32 {
     let s = str::from_utf8(b).unwrap();
     s.parse::<f32>().unwrap()
 }
+
+#[divan::bench(args = VALUES)]
+fn bench_fast_float_parse(b: &[u8]) -> f32 {
+    // let s = str::from_utf8(b).unwrap();
+    // s.parse::<f32>().unwrap()
+    fast_float::parse(b).unwrap()
+}

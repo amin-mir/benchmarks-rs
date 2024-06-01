@@ -10,6 +10,7 @@ anyhow = "1.0.80"
 divan = "0.1.14"
 fastrand = "2.0.1"
 hex = "0.4.3"
+fast-float = "0.2.0"
 
 [[bench]]
 name = "urlencode"
